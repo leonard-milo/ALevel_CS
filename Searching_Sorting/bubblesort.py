@@ -1,4 +1,5 @@
 import random
+import time
 
 def bubblesort(list):
     swapcounter = -1
@@ -30,7 +31,7 @@ def storelist(list):
         f.write(f"{num}\n")
     f.close
 
-def main():
+def test():
     '''
     mylist = [5,2,1,3,6,4]
     mslist1 = bubblesort(mylist)
@@ -40,6 +41,22 @@ def main():
     mslist2 = bubblesort(rndlist)
     # print(mslist2)
     storelist(mslist2)
+
+def timecal(N):
+    rndlist = rndlistgenerator(1024 * N)
+    st = time.time()
+    bubblesort(rndlist)
+    et = time.time()
+    return et - st
+
+def tcpxty():
+    print(timecal(4) / timecal(1))
+    print(timecal(5) / timecal(1))
+
+def main():
+    #test()
+    tcpxty()
+    
 
 if __name__ == "__main__":
     main()
