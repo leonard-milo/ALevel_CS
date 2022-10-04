@@ -1,13 +1,14 @@
 def insertionsort(list):
     size = len(list)
-    for i in range(size):
-        key = list[i]
+    for i in range(1, size):
+        current = list[i]
         place = i - 1
-        if list[place] > key:
-            while place >= 0 and list[place] > key:
-                list[place], list[place+1] = list[place+1], list[place]
+        if list[place] > current:
+            while place >= 0 and list[place] > current:
+                list[place+1] = list[place]
                 place-=1
-            list[place+1] = key
+            list[place+1] = current
+        print(list)
     return list
 
 def test():
