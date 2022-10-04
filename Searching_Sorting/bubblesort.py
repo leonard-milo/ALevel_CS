@@ -1,5 +1,6 @@
 import random
 import time
+import matplotlib.pyplot as plt
 
 def bubblesort(list):
     swapcounter = -1
@@ -49,9 +50,26 @@ def timecal(N):
     et = time.time()
     return et - st
 
+def tgraph(N, T):
+    plt.plot(N, T)
+    plt.xlabel("Number of elements in the list (1024 items)")
+    plt.ylabel('Time (seconds)')
+    plt.title("Time performance of bubble sort")
+    
+    plt.show()
+
 def tcpxty():
-    print(timecal(4) / timecal(1))
-    print(timecal(5) / timecal(1))
+    #print(timecal(4) / timecal(1))
+    #print(timecal(5) / timecal(1))
+    N = [1,2,3,4,5,6,7,8,9]
+    T = []
+    for n in N:
+        exctime = timecal(n)
+        T.append(exctime)
+    tgraph(N, T)
+    #print(N)
+    #print(T)
+    
 
 def main():
     #test()
