@@ -23,13 +23,23 @@ def rndlistgenerator(size):
             i+=1
     return rndlist
 
-def main():
-    mylist = [5,2,1,3,6,4]
-    mslist = bubblesort(mylist)
-    #print(mslist)
-    rndlist = rndlistgenerator(1024)
-    #print(bubblesort(rndlist))
+def storelist(list):
+    f = open("bubble_sort_list.txt", "w+")
+    for l in range(len(list)):
+        num = list[l]
+        f.write(f"{num}\n")
+    f.close
 
+def main():
+    '''
+    mylist = [5,2,1,3,6,4]
+    mslist1 = bubblesort(mylist)
+    print(mslist1)
+    '''
+    rndlist = rndlistgenerator(1024)
+    mslist2 = bubblesort(rndlist)
+    # print(mslist2)
+    storelist(mslist2)
 
 if __name__ == "__main__":
     main()
