@@ -1,4 +1,6 @@
-class Account:
+from abc import ABC, abstractmethod
+
+class Account(ABC):
     latestAccNum = 1000000
     overdraftLim = -1000
     def __init__(self, fName, lName):
@@ -34,8 +36,9 @@ class Account:
         self.lName = lName
         print("Successfully set last name!")
 
+    @abstractmethod
     def displayAccount(self):
-        print(f"{self.accNum}", f"\t{self.fName}", f"\t{self.lName}", f"\t{self.balance}")
+        return f"{self.accNum}\t{self.fName}\t{self.lName}\t{self.balance}"
 
     def deposit(self, dAmt):
         if dAmt < 0:
@@ -43,10 +46,12 @@ class Account:
         self.balance += dAmt
         print(f"Successfully deposit ${dAmt}!")
 
+    @abstractmethod
     def withdraw(self):
         print("Warning! This is an abstract method.")
 
 class ChequingAccount(Account):
+    accType = "Chequing"
     def __init__(self, fName, lName):
         super().__init__(fName, lName)
 
@@ -58,7 +63,11 @@ class ChequingAccount(Account):
         self.balance -= wdAmt
         print(f"Successfully withdraw ${wdAmt}!")
 
+    def displayAccount(self):
+        print(f"{ChequingAccount.accType}\t{super().displayAccount()}")
+
 class SavingAccount(Account):
+    accType = "Saving"
     def __init__(self, fName, lName):
         super().__init__(fName, lName)
         self.withdrawFee = 0
@@ -74,6 +83,9 @@ class SavingAccount(Account):
                 self.balance -= wdAmt + 5*self.withdrawFee
             else:
                 self.balance -= wdAmt + self.withdrawFee
+
+    def displayAccount(self):
+        print(f"{SavingAccount.accType}\t\t{super().displayAccount()}")
 
 def test():
     myChequeAccount = ChequingAccount("Leonard", "Ji")
